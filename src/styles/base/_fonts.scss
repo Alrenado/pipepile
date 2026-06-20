@@ -4,8 +4,7 @@
   font-family: "Roboto";
   src:
           url('/fonts/Roboto-Light.woff2') format('woff2'),
-          url('/fonts/Roboto-Light.woff') format('woff'),
-          url('/fonts/Roboto-Light.ttf') format('truetype');
+          url('/fonts/Roboto-Light.woff') format('woff');
   font-weight: $font-weight-light;
   font-style: normal;
   font-display: swap;
@@ -15,8 +14,7 @@
   font-family: "Roboto";
   src:
           url('/fonts/Roboto-Regular.woff2') format('woff2'),
-          url('/fonts/Roboto-Regular.woff') format('woff'),
-          url('/fonts/Roboto-Regular.ttf') format('truetype');
+          url('/fonts/Roboto-Regular.woff') format('woff');
   font-weight: $font-weight-normal;
   font-style: normal;
   font-display: swap;
@@ -26,8 +24,7 @@
   font-family: "Roboto";
   src:
           url('/fonts/Roboto-Medium.woff2') format('woff2'),
-          url('/fonts/Roboto-Medium.woff') format('woff'),
-          url('/fonts/Roboto-Medium.ttf') format('truetype');
+          url('/fonts/Roboto-Medium.woff') format('woff');
   font-weight: $font-weight-medium;
   font-style: normal;
   font-display: swap;
@@ -37,8 +34,7 @@
   font-family: "Roboto";
   src:
           url('/fonts/Roboto-Bold.woff2') format('woff2'),
-          url('/fonts/Roboto-Bold.woff') format('woff'),
-          url('/fonts/Roboto-Bold.ttf') format('truetype');
+          url('/fonts/Roboto-Bold.woff') format('woff');
   font-weight: $font-weight-bold;
   font-style: normal;
   font-display: swap;
@@ -48,8 +44,7 @@
   font-family: "Times New Roman";
   src:
           url('/fonts/TimesNewRomanMTStd.woff2') format('woff2'),
-          url('/fonts/TimesNewRomanMTStd.woff') format('woff'),
-          url('/fonts/TimesNewRomanMTStd.ttf') format('truetype');
+          url('/fonts/TimesNewRomanMTStd.woff') format('woff');
   font-weight: $font-weight-normal;
   font-style: normal;
   font-display: swap;
@@ -59,8 +54,7 @@
   font-family: "Times New Roman";
   src:
           url('/fonts/TimesNewRomanMTStd-Bold.woff2') format('woff2'),
-          url('/fonts/TimesNewRomanMTStd-Bold.woff') format('woff'),
-          url('/fonts/TimesNewRomanMTStd-Bold.ttf') format('truetype');
+          url('/fonts/TimesNewRomanMTStd-Bold.woff') format('woff');
   font-weight: $font-weight-bold;
   font-style: normal;
   font-display: swap;

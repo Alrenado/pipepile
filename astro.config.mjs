@@ -1,6 +1,9 @@
 import { defineConfig } from 'astro/config';
 import svgo from 'vite-plugin-svgo'
 
+const isProd = process.env.NODE_ENV === 'production'
+
+console.log('isProd:', isProd, 'base:', isProd ? '/pipepile' : '/')
 
 export default defineConfig({
     build:{
@@ -10,5 +13,6 @@ export default defineConfig({
     vite: {
         plugins: [svgo()]
     },
-    site: 'https://pipepile.com.ua',
+    site: 'https://Alrenado.github.io',
+    base: isProd ? '/pipepile' : '/',
 });
