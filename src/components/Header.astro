@@ -1,0 +1,54 @@
+---
+import Logo from './Logo.astro'
+const links = [
+{ href: '/gallery',       'data-i18n': 'header.gallery' },
+{ href: '/manufacturing',  'data-i18n': 'header.manufacturing' },
+{ href: '/documentation',  'data-i18n': 'header.documentation' },
+{ href: '/contacts',       'data-i18n': 'header.contacts' },
+]
+---
+
+<header class="header">
+    <Logo width={107} height={50} />
+
+    <nav class="header__nav">
+        <ul class="header__list">
+            {links.map(link => (
+                    <li>
+                        <a href={link.href} data-i18n={link['data-i18n']} class="header__link"></a>
+                    </li>
+            ))}
+        </ul>
+    </nav>
+
+    <div class="lang-switch">
+        <button class="lang-switch__btn" data-lang="ua">UA</button>
+        <span>|</span>
+        <button class="lang-switch__btn" data-lang="en">EN</button>
+    </div>
+</header>
+
+<script>
+    import { setLang, getCurrentLang, applyTranslations } from '../scripts/translations'
+    import type { Lang } from '../scripts/i18n'
+
+    document.addEventListener('astro:page-load', () => {
+        const lang = getCurrentLang()
+
+        document.querySelectorAll('.lang-switch__btn').forEach(btn => {
+            btn.classList.toggle('lang-switch__btn--active', btn.dataset.lang === lang)
+        })
+
+        document.querySelectorAll('.lang-switch__btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const selected = btn.dataset.lang as Lang
+                setLang(selected)
+                document.querySelectorAll('.lang-switch__btn').forEach(b => {
+                    b.classList.toggle('lang-switch__btn--active', b.dataset.lang === selected)
+                })
+            })
+        })
+
+        applyTranslations(lang)
+    })
+</script>

@@ -1,0 +1,31 @@
+---
+import Head from '../components/Head.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.scss'
+
+interface Props {
+    title: string
+    description?: string
+}
+
+const { title, description } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="ua">
+<Head title={title} description={description} />
+<body>
+<Header transition:persist />
+<main>
+    <slot />
+</main>
+<Footer transition:persist />
+</body>
+</html>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        document.documentElement.lang = localStorage.getItem('lang') ?? 'ua'
+    })
+</script>

@@ -1,5 +1,23 @@
 {
+  "name": "pipepile",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "deploy": "astro build && git add dist -f && git commit -m \"deploy: build\" && git subtree push --prefix dist origin gh-pages"
+  },
+  "dependencies": {
+    "astro": "^6.4.7"
+  },
   "devDependencies": {
+    "sass-embedded": "^1.100.0",
     "vite-plugin-svgo": "^2.0.0"
   }
 }

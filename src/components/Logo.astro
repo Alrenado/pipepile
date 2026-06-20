@@ -1,0 +1,27 @@
+---
+interface Props {
+    width?: number
+    height?: number
+    class?: string
+}
+
+const { width = 120, height = 40, class: className } = Astro.props
+---
+
+<a href="/" class={`logo ${className ?? ''}`} aria-label="На главную">
+    <img
+            src="icons/logo.svg"
+            alt="Company name"
+            width={width}
+            height={height}
+            loading="eager"
+            decoding="async"
+    />
+</a>
+
+<style>
+    .logo {
+        display: inline-flex;
+        align-items: center;
+    }
+</style>

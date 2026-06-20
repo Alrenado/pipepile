@@ -1,0 +1,66 @@
+---
+import Logo from './Logo.astro'
+---
+
+<footer class="footer">
+    <div class="footer__container">
+        <nav class="footer__nav">
+            <ul class="footer__list">
+                <li><a href="/gallery" data-i18n="header.gallery" class="footer__link"></a></li>
+                <li><a href="/manufacturing" data-i18n="header.manufacturing" class="footer__link"></a></li>
+                <li><a href="/documentation" data-i18n="header.documentation" class="footer__link"></a></li>
+                <li><a href="/contacts" data-i18n="header.contacts" class="footer__link"></a></li>
+            </ul>
+        </nav>
+        <Logo width={80} height={37}/>
+
+        <p class="footer__copy" data-i18n="footer.copy"></p>
+
+    </div>
+</footer>
+
+<style lang="scss">
+  @use '../styles/abstracts/variables' as *;
+  @use '../styles/abstracts/mixins' as *;
+
+  .footer {
+    border-top: 1px solid $color-black;
+    padding: $spacing-xl 0;
+
+    &__container {
+      max-width: $container-max;
+      margin: 0 auto;
+      padding: 0 $container-padding;
+      @include flex-between;
+    }
+
+    &__list {
+      display: flex;
+      gap: $spacing-lg;
+      list-style: none;
+    }
+
+    &__link {
+      color: $color-text;
+      transition: color $transition-base;
+
+      &:hover {
+        color: $color-text-selected;
+      }
+    }
+
+    &__copy {
+      font-size: 0.875rem;
+      color: $color-text-selected;
+    }
+  }
+</style>
+
+<script>
+    import {applyTranslations, getCurrentLang} from '../scripts/translations'
+
+    document.addEventListener('astro:page-load', () => {
+        applyTranslations(getCurrentLang())
+    })
+</script>
+
