@@ -1,10 +1,13 @@
 ---
 import Logo from './Logo.astro'
+const base = import.meta.env.BASE_URL
+const basePath = base.endsWith('/') ? base : `${base}/`
+
 const links = [
-{ href: '/gallery',       'data-i18n': 'header.gallery' },
-{ href: '/manufacturing',  'data-i18n': 'header.manufacturing' },
-{ href: '/documentation',  'data-i18n': 'header.documentation' },
-{ href: '/contacts',       'data-i18n': 'header.contacts' },
+    { href: `${basePath}gallery`,      'data-i18n': 'header.gallery' },
+    { href: `${basePath}manufacturing`, 'data-i18n': 'header.manufacturing' },
+    { href: `${basePath}documentation`, 'data-i18n': 'header.documentation' },
+    { href: `${basePath}contacts`,      'data-i18n': 'header.contacts' },
 ]
 ---
 

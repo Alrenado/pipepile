@@ -14,5 +14,5 @@ export default defineConfig({
         plugins: [svgo()]
     },
     site: 'https://Alrenado.github.io',
-    base: isProd ? '/pipepile' : '/',
+    base: '/pipepile',
 });
