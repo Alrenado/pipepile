@@ -1,0 +1,31 @@
+---
+import Section from '../components/Section.astro'
+
+import AppImage from '../components/AppImage.astro'
+import heroImg from '../assets/hero.jpg'
+---
+
+<Section class="hero">
+    <h1 data-i18n="hero.title"></h1>
+    <p data-i18n="hero.subtitle"></p>
+
+    <AppImage
+            src={heroImg}
+            alt="Hero img"
+            width={686}
+            height={501}
+            priority={true}
+            sizes="686px"
+            quality={90}
+    />
+</Section>
+
+<style lang="scss">
+  @use '../styles/abstracts/variables' as *;
+  @use '../styles/abstracts/mixins' as *;
+
+  :global(.hero){
+    padding: 10rem 0;
+  }
+
+</style>

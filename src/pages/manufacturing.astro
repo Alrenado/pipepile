@@ -1,26 +1,10 @@
 astro---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import AppImage from '../components/AppImage.astro'
-import heroImg from '../assets/hero.jpg'
+import HeroIndex from '../components/HeroIndex.astro'
 ---
 
 <BaseLayout title="Pipepile">
-
-    <section class="hero">
-        <h1 data-i18n="hero.title"></h1>
-        <p data-i18n="hero.subtitle"></p>
-
-        <AppImage
-                src={heroImg}
-                alt="Hero img"
-                width={686}
-                height={501}
-                priority={true}
-                sizes="686px"
-                quality={90}
-        />
-    </section>
-
+    <HeroIndex/>
 </BaseLayout>
 
 <script>

@@ -1,8 +1,45 @@
+@use "sass:math";
+
+@function strip-unit($value) {
+  @return math.div($value, ($value * 0 + 1));
+}
+
+@function font-clamp($size) {
+  $min-vw: 768;
+  $max-vw: 1440;
+
+  $min: $size * 0.9;
+  $max: $size * 1.2;
+
+  $slope: math.div(($max - $min), ($max-vw - $min-vw));
+  $intercept: $min - $slope * $min-vw;
+
+  $slope-vw: strip-unit($slope) * 100;
+
+  @return clamp(
+          #{$min},
+          #{$slope-vw}vw + #{$intercept},
+          #{$max}
+  );
+}
+
+$breakpoints: (
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px
+);
+
 @mixin respond-to($bp) {
-  @if $bp == sm  { @media (min-width: 576px)  { @content; } }
-  @if $bp == md  { @media (min-width: 768px)  { @content; } }
-  @if $bp == lg  { @media (min-width: 992px)  { @content; } }
-  @if $bp == xl  { @media (min-width: 1200px) { @content; } }
+  $value: map-get($breakpoints, $bp);
+
+  @if $value {
+    @media (max-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "Unknown breakpoint: #{$bp}";
+  }
 }
 
 @mixin flex-center {
