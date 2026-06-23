@@ -13,6 +13,10 @@ export function applyTranslations(lang: Lang) {
         const key = el.getAttribute('data-i18n')!
         el.textContent = getKey(translations[lang], key)
     })
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html')!
+        el.innerHTML = getKey(translations[lang], key)
+    })
 }
 
 export function getCurrentLang(): Lang {

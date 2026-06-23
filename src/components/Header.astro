@@ -31,13 +31,24 @@ const links = [
             <button class="lang-switch__btn" data-lang="en">EN</button>
         </div>
 
-        <button class="header__burger" aria-label="Menu">
+        <button class="header__burger" aria-label="Menu" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
         </button>
     </div>
 </header>
+
+<style is:global>
+    html.menu-locked,
+    html.menu-locked body {
+        overflow: hidden;
+    }
+    html.menu-locked body {
+        position: fixed;
+        width: 100%;
+    }
+</style>
 
 <style lang="scss">
     @use '../styles/abstracts/variables' as *;
@@ -48,6 +59,11 @@ const links = [
       width: 100%;
       padding: $spacing-2xl 0;
       z-index: 10;
+      transition: background 0.3s;
+
+      &--scrolled {
+        background: $color-bg-light;
+      }
 
       &::before {
         content: '';
@@ -76,14 +92,32 @@ const links = [
 
       &__burger {
         display: none;
-        flex-direction: column;
-        gap: 5px;
+        position: relative;
+        width: 25px;
+        height: 16px;
+        padding: 0;
+        margin: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+        -webkit-appearance: none;
+        appearance: none;
+        flex-shrink: 0;
 
         span {
+          display: block;
+          position: absolute;
+          left: 0;
           width: 25px;
           height: 2px;
           background: $color-text;
-          transition: 0.3s;
+          border-radius: 1px;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+          transform-origin: center center;
+
+          &:nth-child(1) { top: 0;    } // center y = 1px
+          &:nth-child(2) { top: 7px;  } // center y = 8px
+          &:nth-child(3) { top: 14px; } // center y = 15px
         }
       }
 
@@ -94,7 +128,7 @@ const links = [
       @include respond-to(md) {
 
         &__burger {
-          display: flex;
+          display: block;
         }
 
         &__nav {
@@ -144,29 +178,23 @@ const links = [
 
           .lang-switch {
             display: flex;
-
             position: fixed;
-
             bottom: 60px;
             left: 50%;
             transform: translateX(-50%);
-
             flex-direction: row;
             gap: 10px;
-
             z-index: 21;
           }
-
           .header__burger span:nth-child(1) {
-            transform: rotate(45deg) translateY(6px);
+            transform: translateY(7px) rotate(45deg);
           }
 
           .header__burger span:nth-child(2) {
             opacity: 0;
           }
-
           .header__burger span:nth-child(3) {
-            transform: rotate(-45deg) translateY(-6px);
+            transform: translateY(-7px) rotate(-45deg);
           }
         }
       }
@@ -177,29 +205,102 @@ const links = [
     import { setLang, getCurrentLang, applyTranslations } from '../scripts/translations'
     import type { Lang } from '../scripts/i18n'
 
+    let abortCtrl = new AbortController()
+
+    document.addEventListener('astro:before-swap', () => {
+        abortCtrl.abort()
+        abortCtrl = new AbortController()
+    })
+
     document.addEventListener('astro:page-load', () => {
+        const signal = abortCtrl.signal
         const lang = getCurrentLang()
-        const header = document.querySelector('.header')
-        const burger = document.querySelector('.header__burger')
+        const header = document.querySelector('.header') as HTMLElement | null
+        const burger = document.querySelector('.header__burger') as HTMLElement | null
+        const nav = document.querySelector('.header__nav')
 
         document.querySelectorAll('.lang-switch__btn').forEach(btn => {
-            btn.classList.toggle('lang-switch__btn--active', btn.dataset.lang === lang)
+            btn.classList.toggle('lang-switch__btn--active', (btn as HTMLElement).dataset.lang === lang)
         })
 
         document.querySelectorAll('.lang-switch__btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                const selected = btn.dataset.lang as Lang
+                const selected = (btn as HTMLElement).dataset.lang as Lang
                 setLang(selected)
                 document.querySelectorAll('.lang-switch__btn').forEach(b => {
-                    b.classList.toggle('lang-switch__btn--active', b.dataset.lang === selected)
+                    b.classList.toggle('lang-switch__btn--active', (b as HTMLElement).dataset.lang === selected)
                 })
-            })
+            }, { signal })
         })
 
         applyTranslations(lang)
 
-        burger?.addEventListener('click', () => {
-            header?.classList.toggle('header--open')
+        let savedScrollY = 0
+
+        function lockScroll() {
+            savedScrollY = window.scrollY
+            document.body.style.top = `-${savedScrollY}px`
+            document.documentElement.classList.add('menu-locked')
+        }
+
+        function unlockScroll() {
+            document.documentElement.classList.remove('menu-locked')
+            document.body.style.top = ''
+            window.scrollTo(0, savedScrollY)
+        }
+
+        function openMenu() {
+            header?.classList.add('header--open')
+            burger?.setAttribute('aria-expanded', 'true')
+            lockScroll()
+        }
+
+        function closeMenu() {
+            if (!header?.classList.contains('header--open')) return
+            header.classList.remove('header--open')
+            burger?.setAttribute('aria-expanded', 'false')
+            unlockScroll()
+        }
+
+        function toggleMenu() {
+            header?.classList.contains('header--open') ? closeMenu() : openMenu()
+        }
+
+        burger?.addEventListener('click', toggleMenu, { signal })
+
+        const onScroll = () => {
+            header?.classList.toggle('header--scrolled', window.scrollY > 50)
+        }
+        onScroll()
+        window.addEventListener('scroll', onScroll, { signal, passive: true })
+
+        nav?.querySelectorAll('.header__link').forEach(link => {
+            link.addEventListener('click', closeMenu, { signal })
         })
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu()
+        }, { signal })
+
+        let touchStartX = 0
+        let touchStartY = 0
+
+        document.addEventListener('touchstart', (e) => {
+            if (!header?.classList.contains('header--open')) return
+            touchStartX = e.touches[0].clientX
+            touchStartY = e.touches[0].clientY
+        }, { signal, passive: true })
+
+        document.addEventListener('touchend', (e) => {
+            if (!header?.classList.contains('header--open')) return
+            const dx = e.changedTouches[0].clientX - touchStartX
+            const dy = e.changedTouches[0].clientY - touchStartY
+            const adx = Math.abs(dx)
+            const ady = Math.abs(dy)
+
+            if ((dx < -60 && adx > ady) || (dy < -60 && ady > adx)) {
+                closeMenu()
+            }
+        }, { signal, passive: true })
     })
 </script>
