@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:map";
 
 @function strip-unit($value) {
   @return math.div($value, ($value * 0 + 1));
@@ -31,7 +32,7 @@ $breakpoints: (
 );
 
 @mixin respond-to($bp) {
-  $value: map-get($breakpoints, $bp);
+  $value: map.get($breakpoints, $bp);
 
   @if $value {
     @media (max-width: $value) {
