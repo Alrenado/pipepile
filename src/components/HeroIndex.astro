@@ -2,30 +2,73 @@
 import Section from '../components/Section.astro'
 
 import AppImage from '../components/AppImage.astro'
-import heroImg from '../assets/hero.jpg'
+import pipeDiagram from '../assets/pipe-diagram.jpg'
+import pipeHighlight from '../assets/pipe-highlight.jpg'
 ---
 
-<Section class="hero">
-    <h1 data-i18n="hero.title"></h1>
-    <p data-i18n-html="hero.subtitle"></p>
+<Section class="hero" paddingTop="10rem">
+    <div class="hero__text">
+        <h1 data-i18n-html="hero.title"></h1>
+        <p data-i18n-html="hero.subtitle"></p>
+    </div>
 
-    <AppImage
-            src={heroImg}
-            alt="Hero img"
-            width={686}
-            height={501}
-            priority={true}
-            sizes="686px"
-            quality={90}
-    />
+    <div class="hero__images">
+        <AppImage
+                src={pipeDiagram}
+                alt="pipe-diagram"
+                width={686}
+                height={501}
+                priority={true}
+                sizes="686px"
+                quality={90}
+        />
+        <AppImage
+                src={pipeHighlight}
+                alt="pipe-highlight"
+                width={686}
+                height={501}
+                priority={true}
+                sizes="686px"
+                quality={90}
+        />
+    </div>
 </Section>
 
 <style lang="scss">
   @use '../styles/abstracts/variables' as *;
   @use '../styles/abstracts/mixins' as *;
 
-  :global(.hero){
-    padding: 10rem 0;
+  .hero {
+    &__text {
+      flex: 7;
+      min-width: 0;
+      overflow-wrap: break-word;
+      display: flex;
+      flex-direction: column;
+      font-family: "Times New Roman", serif;
+      font-weight: $font-weight-normal;
+      font-size: font-clamp(1.4rem);
+    }
+
+    &__images {
+      flex: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
   }
 
+  @include respond-to(lg) {
+    .hero {
+      &__text,
+      &__images {
+        flex: none;
+        width: 100%;
+      }
+
+      &__images {
+        order: -1;
+      }
+    }
+  }
 </style>

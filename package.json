@@ -11,7 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "astro check",
-    "deploy": "cross-env NODE_ENV=production astro build && git add dist -f && git commit -m \"deploy: build\" && git subtree push --prefix dist origin gh-pages"
+    "deploy": "cross-env NODE_ENV=production astro build && node -e \"require('fs').writeFileSync('dist/.nojekyll', '')\" && git add dist -f && git commit -m \"deploy: build\" && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
     "astro": "^6.4.7"

@@ -3,11 +3,12 @@ interface Props {
     class?: string
     id?: string
     fullWidth?: boolean
+    paddingTop?: string
 }
-const { class: className, id, fullWidth = false } = Astro.props
+const { class: className, id, fullWidth = false, paddingTop } = Astro.props
 ---
 
-<section {id} class={`section ${className ?? ''}`}>
+<section {id} class={`section ${className ?? ''}`} style={paddingTop ? `padding-top: ${paddingTop}` : '20rem'}>
     <div class={`section__container ${fullWidth ? 'section__container--full' : ''}`}>
         <slot />
     </div>
@@ -18,8 +19,8 @@ const { class: className, id, fullWidth = false } = Astro.props
 
   .section {
 
-
     &__container {
+      display: flex;
       max-width: $container-max;
       margin: 0 auto;
       padding: 0 $container-padding;
