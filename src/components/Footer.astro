@@ -1,15 +1,17 @@
 ---
 import Logo from './Logo.astro'
+const base = import.meta.env.BASE_URL
+const basePath = base.endsWith('/') ? base : `${base}/`
 ---
 
 <footer class="footer">
     <div class="footer__container">
         <nav class="footer__nav">
             <ul class="footer__list">
-                <li><a href="/gallery" data-i18n="header.gallery" class="footer__link"></a></li>
-                <li><a href="/manufacturing" data-i18n="header.manufacturing" class="footer__link"></a></li>
-                <li><a href="/documentation" data-i18n="header.documentation" class="footer__link"></a></li>
-                <li><a href="/contacts" data-i18n="header.contacts" class="footer__link"></a></li>
+                <li><a href={`${basePath}gallery`}       data-i18n="header.gallery"       class="footer__link"></a></li>
+                <li><a href={`${basePath}manufacturing`}  data-i18n="header.manufacturing"  class="footer__link"></a></li>
+                <li><a href={`${basePath}documentation`}  data-i18n="header.documentation"  class="footer__link"></a></li>
+                <li><a href={`${basePath}contacts`}       data-i18n="header.contacts"       class="footer__link"></a></li>
             </ul>
         </nav>
         <Logo width={80} height={37}/>
