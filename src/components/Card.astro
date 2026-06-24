@@ -1,0 +1,21 @@
+---
+interface Props {
+    class?: string
+}
+const { class: className } = Astro.props
+---
+
+<div class={`card ${className ?? ''}`}>
+    <slot />
+</div>
+
+<style lang="scss">
+  @use '../styles/abstracts/variables' as *;
+
+  .card {
+    padding: $spacing-xl;
+    border-radius: $radius-lg;
+    min-width: 0;
+    overflow: hidden;
+  }
+</style>

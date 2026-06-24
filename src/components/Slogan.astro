@@ -1,0 +1,32 @@
+---
+import Section from '../components/Section.astro'
+import Icon from '../components/Icon.astro'
+import Title from '../components/Title.astro'
+---
+
+<Section class="slogan">
+    <Title MainText="slogan.title" />
+
+    <div class="slogan__container">
+        <div class="slogan__wrapper">
+            <Icon name="connector" size={30} />
+            <h2 class="slogan__text" data-i18n-html="slogan.headline"></h2>
+        </div>
+
+        <h2 class="slogan__text">+</h2>
+
+        <div class="slogan__wrapper">
+            <Icon name="pipe" size={30} />
+            <h2 class="slogan__text" data-i18n-html="slogan.tagline"></h2>
+        </div>
+
+        <h2 class="slogan__text">=</h2>
+
+        <h2 class="slogan__text" data-i18n-html="slogan.motto"></h2>
+    </div>
+</Section>
+
+<style lang="scss">
+  @use '../styles/abstracts/variables' as *;
+  @use '../styles/abstracts/mixins' as *;
+</style>

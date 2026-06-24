@@ -1,0 +1,39 @@
+---
+import Title from '../components/Title.astro'
+import Section from '../components/Section.astro'
+import Card from '../components/Card.astro'
+
+import AppImage from '../components/AppImage.astro'
+import firstPicture from '../assets/port-diagram.png'
+import secondPicture from '../assets/wall-diagram.png'
+import thirdPicture from '../assets/bridge-diagram.png'
+import fourthPicture from '../assets/tunnels-diagram.png'
+
+const featuresCards = [
+    {image: firstPicture, imageAlt:'port-diagram', title: 'features.firstTitle', text: 'features.firstText'},
+    {image: secondPicture, imageAlt:'wall-diagram', title: 'features.secondTitle', text: 'features.secondText'},
+    {image: thirdPicture, imageAlt:'bridge-diagram', title: 'features.thirdTitle', text: 'features.thirdText'},
+    {image: fourthPicture, imageAlt:'tunnels-diagram', title: 'features.fourthTitle', text: 'features.fourthText'}
+]
+---
+
+<Section class="features">
+    <Title MainText="features.title" align="center"/>
+    <div class="features__grid">
+        {featuresCards.map(({ image, imageAlt, title, text}) => (
+            <Card>
+                <AppImage
+                        src={image}
+                        alt={imageAlt}
+                        width={300}
+                        height={220}
+                        priority={true}
+                        sizes="220px"
+                        quality={90}
+                />
+                <h2 data-i18n={title}></h2>
+                <span data-i18n={text}></span>
+            </Card>
+        ))}
+    </div>
+</Section>

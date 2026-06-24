@@ -1,0 +1,30 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+h1 {
+  font-family: $font-roboto;
+  font-size: font-clamp(3rem);
+  font-weight: $font-weight-bold;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+h2 {
+  font-family: $font-roboto;
+  font-size: font-clamp(2.5rem);
+  font-weight: $font-weight-medium;
+  line-height: 3.125rem;
+}
+
+span{
+  font-family: $font-roboto;
+  font-size: font-clamp(1rem);
+  font-weight: $font-weight-normal;
+  line-height: 3.125rem;
+}
+
+p{
+  font-family: $font-TimesNewRoman;
+  font-weight: $font-weight-normal;
+  font-size: font-clamp(1.4rem);
+}

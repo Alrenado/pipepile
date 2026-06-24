@@ -2,6 +2,8 @@
 @use '../abstracts/mixins' as *;
 
 .hero {
+  background-image: linear-gradient(to right, $color-white, $color-bg-blue);
+
   .section__container {
     display: flex;
     gap: 2.5rem;
@@ -20,6 +22,12 @@
   .hero__images .img {
     height: 100%;
     width: 100%;
+  }
+
+  .hero__lg {
+    font-family: $font-TimesNewRoman;
+    font-weight: $font-weight-bold;
+    font-size: font-clamp(2rem);
   }
 
   @include respond-to(lg) {

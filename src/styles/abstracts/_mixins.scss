@@ -43,10 +43,25 @@ $breakpoints: (
   }
 }
 
+@mixin flex-start {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+@mixin flex-end {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  text-align: right;
+}
+
 @mixin flex-center {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 @mixin flex-between {
