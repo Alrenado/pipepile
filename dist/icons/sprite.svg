@@ -28,7 +28,7 @@
         </defs>
     </symbol>
 
-    <symbol width="67" height="80" viewBox="0 0 67 80" >
+    <symbol id="icon-pipe" width="67" height="80" viewBox="0 0 67 80" >
         <rect width="67" height="80" fill="url(#pattern0_791_183)"/>
         <defs>
             <pattern id="pattern0_791_183" patternContentUnits="objectBoundingBox" width="1" height="1">
