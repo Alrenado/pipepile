@@ -1,5 +1,4 @@
 ---
-
 ---
 
 <div class="embla">
@@ -84,13 +83,11 @@
                 align: 'start',
             })
 
-            // Стрелки
             emblaNode.querySelector('.embla__btn--prev')
                 ?.addEventListener('click', () => embla.scrollPrev())
             emblaNode.querySelector('.embla__btn--next')
                 ?.addEventListener('click', () => embla.scrollNext())
 
-            // Dots
             const dots: HTMLButtonElement[] = embla.scrollSnapList().map((_, i) => {
                 const dot = document.createElement('button')
                 dot.classList.add('embla__dot')
@@ -108,6 +105,20 @@
 
             embla.on('select', updateDots)
             updateDots()
+
+            const slides = emblaNode.querySelectorAll('.embla__slide')
+            const images = Array.from(slides).map(slide => {
+                const img = slide.querySelector('img')
+                return img?.currentSrc || img?.src || ''
+            }).filter(Boolean)
+
+            slides.forEach((slide, i) => {
+                slide.addEventListener('click', () => {
+                    window.dispatchEvent(new CustomEvent('lightbox:open', {
+                        detail: { images, startIndex: i }
+                    }))
+                })
+            })
         })
     })
 </script>
