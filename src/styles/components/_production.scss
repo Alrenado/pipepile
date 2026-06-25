@@ -1,0 +1,39 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.production {
+  .embla__slide {
+    flex: 0 0 calc(25% - 1.5rem);
+    min-width: 0;
+    margin-right: 2rem;
+    border-radius: 1rem;
+  }
+
+  .embla__slide .img-wrapper {
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
+
+  .embla__slide picture {
+    display: block;
+    height: 100%;
+  }
+
+  .embla__slide .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include respond-to(lg) {
+    .embla__slide {
+      flex: 0 0 50%;
+    }
+  }
+
+  @include respond-to(sm) {
+    .embla__slide {
+      flex: 0 0 100%;
+    }
+  }
+}

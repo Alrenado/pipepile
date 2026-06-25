@@ -90,6 +90,26 @@ const links = [
         gap: $spacing-2xl;
       }
 
+      &__link {
+        color: $color-text;
+        transition: color $transition-base;
+
+        &:hover {
+          color: $color-text-selected;
+        }
+      }
+
+      .lang-switch {
+        &__btn {
+          color: $color-text;
+          transition: color $transition-base;
+
+          &:hover {
+            color: $color-text-selected;
+          }
+        }
+      }
+
       &__burger {
         display: none;
         position: relative;

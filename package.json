@@ -14,7 +14,8 @@
     "deploy": "cross-env NODE_ENV=production astro build && node -e \"require('fs').writeFileSync('dist/.nojekyll', '')\" && git add dist -f && git commit -m \"deploy: build\" && git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
-    "astro": "^6.4.7"
+    "astro": "^6.4.7",
+    "embla-carousel": "^8.6.0"
   },
   "devDependencies": {
     "cross-env": "^10.1.0",
