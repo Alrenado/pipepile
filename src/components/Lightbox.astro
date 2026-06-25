@@ -179,11 +179,6 @@
       emblaMain.on('select', updateThumbs)
       updateThumbs()
 
-      lightbox.querySelector('.embla-main__btn--prev')
-        ?.addEventListener('click', () => emblaMain!.scrollPrev())
-      lightbox.querySelector('.embla-main__btn--next')
-        ?.addEventListener('click', () => emblaMain!.scrollNext())
-
       lightbox.classList.add('is-open')
       lightbox.setAttribute('aria-hidden', 'false')
       document.documentElement.classList.add('menu-locked')
@@ -196,6 +191,12 @@
       emblaMain?.destroy()
       emblaThumbs?.destroy()
     }
+
+    // Стрелки — один раз, используют текущий emblaMain через замыкание
+    lightbox.querySelector('.embla-main__btn--prev')
+      ?.addEventListener('click', () => emblaMain?.scrollPrev())
+    lightbox.querySelector('.embla-main__btn--next')
+      ?.addEventListener('click', () => emblaMain?.scrollNext())
 
     lightbox.querySelector('.lightbox__close')?.addEventListener('click', close)
     lightbox.addEventListener('click', e => { if (e.target === lightbox) close() })

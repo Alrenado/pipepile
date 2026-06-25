@@ -44,10 +44,6 @@ const links = [
     html.menu-locked body {
         overflow: hidden;
     }
-    html.menu-locked body {
-        position: fixed;
-        width: 100%;
-    }
 </style>
 
 <style lang="scss">
@@ -58,7 +54,7 @@ const links = [
       position: fixed;
       width: 100%;
       padding: $spacing-2xl 0;
-      z-index: 10;
+      z-index: 50;
       transition: background 0.3s;
 
       &--scrolled {
@@ -256,18 +252,12 @@ const links = [
 
         applyTranslations(lang)
 
-        let savedScrollY = 0
-
         function lockScroll() {
-            savedScrollY = window.scrollY
-            document.body.style.top = `-${savedScrollY}px`
             document.documentElement.classList.add('menu-locked')
         }
 
         function unlockScroll() {
             document.documentElement.classList.remove('menu-locked')
-            document.body.style.top = ''
-            window.scrollTo(0, savedScrollY)
         }
 
         function openMenu() {
@@ -289,7 +279,13 @@ const links = [
 
         burger?.addEventListener('click', toggleMenu, { signal })
 
+        // iOS: блокируем скролл сквозь меню через touchmove
+        nav?.addEventListener('touchmove', (e) => {
+            e.preventDefault()
+        }, { passive: false })
+
         const onScroll = () => {
+            if (header?.classList.contains('header--open')) return
             header?.classList.toggle('header--scrolled', window.scrollY > 50)
         }
         onScroll()
