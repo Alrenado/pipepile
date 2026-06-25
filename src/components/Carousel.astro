@@ -107,13 +107,15 @@
             updateDots()
 
             const slides = emblaNode.querySelectorAll('.embla__slide')
-            const images = Array.from(slides).map(slide => {
-                const img = slide.querySelector('img')
-                return img?.currentSrc || img?.src || ''
-            }).filter(Boolean)
 
             slides.forEach((slide, i) => {
                 slide.addEventListener('click', () => {
+                    // Собираем src в момент клика — браузер уже выбрал формат
+                    const images = Array.from(slides).map(s => {
+                        const img = s.querySelector('img')
+                        return img?.currentSrc || img?.src || ''
+                    }).filter(Boolean)
+
                     window.dispatchEvent(new CustomEvent('lightbox:open', {
                         detail: { images, startIndex: i }
                     }))
