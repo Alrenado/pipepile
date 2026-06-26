@@ -1,1 +1,0 @@
-import{a,g as r}from"./translations._u0tZCsQ.js";document.addEventListener("astro:page-load",()=>{a(r());const e=document.querySelector(".footer__accordion-toggle");e&&e.addEventListener("click",()=>{const t=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",String(!t))})});
