@@ -1,0 +1,36 @@
+---
+import Section from '../common/Section.astro'
+import AppImage from '../common/AppImage.astro'
+import pipeDiagram from '../../assets/images/pipe-diagram.jpg'
+import pipeHighlight from '../../assets/images/pipe-highlight.jpg'
+---
+
+<Section class="hero" paddingTop="8rem">
+    <div class="hero__text">
+        <p data-i18n-html="hero.title"></p>
+        <p data-i18n-html="hero.subtitle"></p>
+    </div>
+
+    <div class="hero__images">
+        <AppImage
+                src={pipeDiagram}
+                alt="pipe-diagram"
+                width={686}
+                height={501}
+                priority={true}
+                fetchpriority="high"
+                sizes="(max-width: 992px) 100vw, 686px"
+                quality={85}
+        />
+        <AppImage
+                src={pipeHighlight}
+                alt="pipe-highlight"
+                width={686}
+                height={501}
+                priority={true}
+                sizes="(max-width: 992px) 100vw, 686px"
+                quality={85}
+        />
+    </div>
+</Section>
+

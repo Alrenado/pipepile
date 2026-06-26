@@ -5,14 +5,29 @@
     "documentation": "Documentation",
     "contacts": "Contacts"
   },
+  "footer": {
+    "privacy": "© 2026 UPP Systems. All rights reserved.",
+    "accordionTitle": "Navigation"
+  },
   "hero": {
     "title": "<strong>Ukraine Pipepiles</strong>",
-    "subtitle": "<strong> the first company in Ukraine </strong> що <u>exclusively</u> producing tubular sheet piles and beam sheet piles based on the patented MF-Pipe technology developed by SteelWall ISH GmbH (Germany). <br/> Tubular sheet piles and beam sheet piles have been widely used worldwide for many years in almost all infrastructure and hydraulic engineering projects. <br/> <br/> <span class=\"hero__lg\">Now we produce them in Ukraine.</span><br/> <br/> The production uses <br/> <strong><u> certified steel pipes </u></strong> and I-beams from various manufacturers <br/> + <br/> <strong><u> unique patented sheet pile locks </strong></u> SteelWall ISH GMBH supplied to Ukraine exclusively by STEELWALL UKRAINE (www.steelwallukr.com ymatt24@yahoo.com) <br/> <br/> This allows the creation of <span class=\"hero__lg\">highly reliable tubular sheet pile </span>systems for complex civil and hydraulic construction projects such as: <br/><br/> • port infrastructure (piers, berths, shoreline reinforcement)<br/> • retaining walls (viaducts, multi-level road interchanges, reinforcement <br/> linear sections of roads, railways, oil and gas pipelines) <br/> • bridge structures (bridge approaches and pier caissons) <br/> • various underground structures and tunnels (horizontal DTH technology) <br/> • deep excavations and multi-level parking structures for civil construction. <br/><br/> <strong>The produced piles comply with the technical specifications of Ukraine TU U 24.2-455223116002:2025, specially developed to regulate the production of high-quality and reliable piles.</strong>"
+    "subtitle": "<strong> the first company in Ukraine </strong> that <u>exclusively</u> producing tubular sheet piles and beam sheet piles based on the patented MF-Pipe technology developed by SteelWall ISH GmbH (Germany). <br/> Tubular sheet piles and beam sheet piles have been widely used worldwide for many years in almost all infrastructure and hydraulic engineering projects. <br/> <br/> <span class=\"hero__lg\">Now we produce them in Ukraine.</span><br/> <br/> The production uses <br/> <strong><u> certified steel pipes </u></strong> and I-beams from various manufacturers <br/> + <br/> <strong><u> unique patented sheet pile locks </strong></u> SteelWall ISH GMBH supplied to Ukraine exclusively by STEELWALL UKRAINE (www.steelwallukr.com ymatt24@yahoo.com) <br/> <br/> This allows the creation of <span class=\"hero__lg\">highly reliable tubular sheet pile </span>systems for complex civil and hydraulic construction projects such as: <br/><br/> • port infrastructure (piers, berths, shoreline reinforcement)<br/> • retaining walls (viaducts, multi-level road interchanges, reinforcement <br/> linear sections of roads, railways, oil and gas pipelines) <br/> • bridge structures (bridge approaches and pier caissons) <br/> • various underground structures and tunnels (horizontal DTH technology) <br/> • deep excavations and multi-level parking structures for civil construction. <br/><br/> <strong>The produced piles comply with the technical specifications of Ukraine TU U 24.2-455223116002:2025, specially developed to regulate the production of high-quality and reliable piles.</strong>"
   },
   "slogan": {
     "title": "The production uses",
     "headline": "LOCK",
     "tagline": "PIPE",
     "motto": "TUBULAR SHEET PILE"
+  },
+  "features": {
+    "title": "Piles are driven “lock into lock”, resulting in:",
+    "firstTitle": "Port Infrastructure",
+    "secondTitle": "Retaining Walls",
+    "thirdTitle": "Bridge Structures",
+    "fourthTitle": "Tunnels",
+    "firstText": "Breakwaters, piers, shoreline protection.",
+    "secondText": "Viaducts, multi-level road interchanges, oil and gas pipelines.",
+    "thirdText": "Bridge approaches and caisson supports.",
+    "fourthText": "Construction of portals, retaining structures."
   }
 }

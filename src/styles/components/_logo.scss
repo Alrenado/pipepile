@@ -1,0 +1,19 @@
+@use '../abstracts/mixins' as *;
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+
+  img {
+    width: var(--logo-w, 120px);
+    height: auto;
+  }
+
+  @include respond-to('xl') {
+    img { width: calc(var(--logo-w, 120px) * 0.75); }
+  }
+
+  @include respond-to('lg') {
+    img { width: calc(var(--logo-w, 120px) * 0.5); }
+  }
+}

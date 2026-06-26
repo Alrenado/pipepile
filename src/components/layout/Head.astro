@@ -1,0 +1,57 @@
+---
+
+import { ClientRouter } from "astro:transitions";
+import { Font } from "astro:assets";
+
+interface Props {
+    title: string
+    description?: string
+    lang?: 'uk' | 'en'
+    ogImage?: string
+    canonical?: string
+    noindex?: boolean
+}
+
+const {
+    title,
+    description = 'upp site',
+    lang = 'uk',
+    ogImage = '/og/default.jpg',
+    canonical,
+    noindex = false,
+} = Astro.props
+
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href
+
+const alternates = [
+    { lang: 'uk', href: `https://pipepile.com/uk${Astro.url.pathname}` },
+    { lang: 'en', href: `https://pipepile.com/en${Astro.url.pathname}` },
+]
+
+const base = import.meta.env.BASE_URL
+const basePath = base.endsWith('/') ? base : `${base}/`
+---
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta http-equiv="content-language" content={lang} />
+
+    {alternates.map(alt => (
+            <link rel="alternate" hreflang={alt.lang} href={alt.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
+
+    <link rel="icon" type="image/svg+xml" href={`${basePath}favicon.svg`} />
+    <link rel="shortcut icon" href={`${basePath}favicon.ico`} />
+
+    <Font cssVariable="--font-roboto" preload />
+
+    <ClientRouter />
+</head>

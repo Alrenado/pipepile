@@ -1,0 +1,23 @@
+---
+interface Props {
+    width?: number
+    height?: number
+    class?: string
+}
+
+const { width = 120, height = 40, class: className } = Astro.props
+const base = import.meta.env.BASE_URL
+const basePath = base.endsWith('/') ? base : `${base}/`
+
+---
+
+<a href={basePath} class={`logo ${className ?? ''}`} style={`--logo-w: ${width}px`} aria-label="На главную">
+    <img
+            src={`${basePath}icons/logo.svg`}
+            alt="upp"
+            width={width}
+            height={height}
+            loading="eager"
+            decoding="async"
+    />
+</a>

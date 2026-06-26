@@ -2,10 +2,10 @@
 @use 'abstracts/mixins' as *;
 @use 'abstracts/functions' as *;
 
-@use 'base/fonts';
 @use 'base/reset';
 @use 'base/typography';
 
+@use 'components/logo';
 @use 'components/card';
 @use 'components/form';
 @use 'components/button';

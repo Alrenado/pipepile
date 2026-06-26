@@ -24,16 +24,46 @@
     width: 100%;
   }
 
+  .hero__text * {
+    font-family: $font-TimesNewRoman;
+  }
+
   .hero__lg {
     font-family: $font-TimesNewRoman;
     font-weight: $font-weight-bold;
     font-size: font-clamp(2rem);
   }
 
+  .hero__text {
+    flex: 7;
+    min-width: 0;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    font-family: $font-TimesNewRoman;
+    font-weight: $font-weight-normal;
+    font-size: font-clamp(1.4rem);
+  }
+
+  .hero__images {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
   @include respond-to(lg) {
     .section__container {
       flex-direction: column;
     }
+
+    .hero__text,
+    .hero__images {
+      flex: none;
+      width: 100%;
+    }
+
+    .hero__images { order: -1; }
 
     .hero__images .img-wrapper { flex: none; }
     .hero__images picture      { height: auto; }

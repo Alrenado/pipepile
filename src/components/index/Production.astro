@@ -1,0 +1,42 @@
+---
+import Section from '../common/Section.astro'
+import Carousel from '../common/Carousel.astro'
+import AppImage from '../common/AppImage.astro'
+import firstPicture from '../../assets/images/index-1.jpeg'
+import secondPicture from '../../assets/images/index-2.jpeg'
+import thirdPicture from '../../assets/images/index-3.jpeg'
+import fourthPicture from '../../assets/images/index-4.jpeg'
+import fifthPicture from '../../assets/images/index-5.jpeg'
+import sixthPicture from '../../assets/images/index-6.jpeg'
+import seventhPicture from '../../assets/images/index-7.jpeg'
+import eighthPicture from '../../assets/images/index-8.jpeg'
+
+const carouselCard = [
+    {image: firstPicture, imageAlt: 'index-1'},
+    {image: secondPicture, imageAlt: 'index-2'},
+    {image: thirdPicture, imageAlt: 'index-3'},
+    {image: fourthPicture, imageAlt: 'index-4'},
+    {image: fifthPicture, imageAlt: 'index-5'},
+    {image: sixthPicture, imageAlt: 'index-6'},
+    {image: seventhPicture, imageAlt: 'index-7'},
+    {image: eighthPicture, imageAlt: 'index-8'}
+]
+
+---
+
+<Section class="production">
+    <Carousel>
+        {carouselCard.map(({ image, imageAlt }) => (
+            <div class="embla__slide">
+                <AppImage
+                    src={image}
+                    alt={imageAlt}
+                    width={450}
+                    height={300}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    quality={80}
+                />
+            </div>
+        ))}
+    </Carousel>
+</Section>

@@ -1,0 +1,19 @@
+---
+interface Props {
+    width?: string
+}
+const { width = '377px' } = Astro.props
+---
+
+<div class="divider" style={`max-width: ${width}`}></div>
+
+<style lang="scss">
+    @use '../../styles/abstracts/variables' as *;
+    @use '../../styles/abstracts/mixins' as *;
+
+    .divider {
+        width: 100%;
+        height: 4px;
+        background-color: $color-text-selected;
+    }
+</style>
