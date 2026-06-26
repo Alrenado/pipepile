@@ -1,16 +1,4 @@
-astro---
-import BaseLayout from '../layouts/BaseLayout.astro'
-import HeroIndex from '../components/index/HeroIndex.astro'
 ---
-
-<BaseLayout title="Pipepile">
-    <HeroIndex/>
-</BaseLayout>
-
-<script>
-    import { applyTranslations, getCurrentLang } from '../scripts/translations'
-
-    document.addEventListener('astro:page-load', () => {
-        applyTranslations(getCurrentLang())
-    })
-</script>
+import InProgressLayout from '../layouts/InProgressLayout.astro'
+---
+<InProgressLayout title="Відеогалерея | Pipepile" />

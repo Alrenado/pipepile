@@ -19,6 +19,10 @@
     "tagline": "PIPE",
     "motto": "TUBULAR SHEET PILE"
   },
+  "inProgress": {
+    "title": "Page in progress",
+    "text": "We are working on this section. It will be available soon."
+  },
   "features": {
     "title": "Piles are driven “lock into lock”, resulting in:",
     "firstTitle": "Port Infrastructure",
