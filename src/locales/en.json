@@ -33,5 +33,11 @@
     "secondText": "Viaducts, multi-level road interchanges, oil and gas pipelines.",
     "thirdText": "Bridge approaches and caisson supports.",
     "fourthText": "Construction of portals, retaining structures."
+  },
+  "contacts": {
+    "telTitle": "Telephone",
+    "telText": "+38 050 318 39 76",
+    "emailTitle": "Email",
+    "emailText": "info@pipepile.com.ua"
   }
 }

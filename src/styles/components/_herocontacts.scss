@@ -1,0 +1,42 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.contacts {
+  .section__container {
+    @include flex-center;
+    gap: 4rem;
+
+    @include respond-to(lg){
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    @include respond-to(sm){
+      @include flex-start;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__container {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__title {
+    font-family: $font-roboto;
+    font-weight: $font-weight-medium;
+    color: $color-text;
+  }
+
+  &__text {
+    font-family: $font-roboto;
+    color: $color-text;
+  }
+}
