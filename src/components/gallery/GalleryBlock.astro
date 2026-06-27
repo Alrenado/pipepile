@@ -1,0 +1,68 @@
+---
+import AppImage from '../common/AppImage.astro'
+import AppVideo from '../common/AppVideo.astro'
+import type { ImageMetadata } from 'astro'
+
+interface Props {
+    main?: ImageMetadata
+    mainVideo?: string
+    mainAlt?: string
+    sub: [ImageMetadata, ImageMetadata, ImageMetadata, ImageMetadata]
+    subAlt?: [string, string, string, string]
+    reversed?: boolean
+}
+
+const {
+    main,
+    mainVideo,
+    mainAlt = 'Главное фото',
+    sub,
+    subAlt = ['Фото 1', 'Фото 2', 'Фото 3', 'Фото 4'],
+    reversed = false,
+} = Astro.props
+
+// Для картинки задаём aspect-ratio 1/1, для видео — пусть grid сам определяет высоту
+const mainStyle = mainVideo ? undefined : 'aspect-ratio: 1 / 1'
+---
+
+<div class:list={['gallery__grid', { 'gallery__grid--reversed': reversed }]}>
+    <div class="gallery__main" style={mainStyle}>
+        <div class:list={['gallery__cell', { 'gallery__cell--video': !!mainVideo }]}>
+            {mainVideo
+                ? <AppVideo src={mainVideo} title={mainAlt} />
+                : main && <AppImage src={main} alt={mainAlt} width={800} sizes="(max-width: 992px) 100vw, 50vw" />
+            }
+            {!mainVideo && <div class="gallery__overlay" aria-hidden="true"></div>}
+        </div>
+    </div>
+    <div class="gallery__sub">
+        {sub.map((img, i) => (
+            <div class="gallery__cell">
+                <AppImage src={img} alt={subAlt[i]} width={400} sizes="(max-width: 576px) 100vw, (max-width: 992px) 50vw, 25vw" />
+                <div class="gallery__overlay" aria-hidden="true"></div>
+            </div>
+        ))}
+    </div>
+</div>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        document.querySelectorAll<HTMLElement>('.gallery__grid').forEach(grid => {
+            grid.addEventListener('click', (e) => {
+                const cell = (e.target as HTMLElement).closest<HTMLElement>('.gallery__cell')
+                if (!cell || cell.classList.contains('gallery__cell--video')) return
+
+                const allCells = Array.from(grid.querySelectorAll<HTMLElement>('.gallery__cell:not(.gallery__cell--video)'))
+                const startIndex = allCells.indexOf(cell)
+                const images = allCells.map(c => {
+                    const img = c.querySelector<HTMLImageElement>('.img')
+                    return img?.currentSrc || img?.src || ''
+                }).filter(Boolean)
+
+                window.dispatchEvent(new CustomEvent('lightbox:open', {
+                    detail: { images, startIndex }
+                }))
+            })
+        })
+    })
+</script>

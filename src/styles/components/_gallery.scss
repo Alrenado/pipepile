@@ -1,0 +1,9 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.gallery {
+    .section__container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}

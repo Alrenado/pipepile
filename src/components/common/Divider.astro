@@ -1,15 +1,17 @@
 ---
 interface Props {
-    width?: string
+    width?: number
 }
-const { width = '377px' } = Astro.props
+const { width = 377 } = Astro.props
+const min = Math.round(width * 0.4)
+const vw = (width / 14.4).toFixed(1)
+const clampWidth = `clamp(${min}px, ${vw}vw, ${width}px)`
 ---
 
-<div class="divider" style={`max-width: ${width}`}></div>
+<div class="divider" style={`max-width: ${clampWidth}`}></div>
 
 <style lang="scss">
     @use '../../styles/abstracts/variables' as *;
-    @use '../../styles/abstracts/mixins' as *;
 
     .divider {
         width: 100%;

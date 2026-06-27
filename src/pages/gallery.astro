@@ -1,4 +1,10 @@
 ---
-import InProgressLayout from '../layouts/InProgressLayout.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import HeroGallery from '../components/gallery/HeroGallery.astro'
+import MainGallery from '../components/gallery/MainGallery.astro'
 ---
-<InProgressLayout title="Відеогалерея | Pipepile" />
+
+<BaseLayout title="Pipepile">
+    <HeroGallery/>
+    <MainGallery/>
+</BaseLayout>
