@@ -1,7 +1,7 @@
 @use '../../styles/abstracts/variables' as *;
 @use '../../styles/abstracts/mixins' as *;
 
-.contacts {
+.hero-contacts {
   .section__container {
     @include flex-center;
     gap: 4rem;
