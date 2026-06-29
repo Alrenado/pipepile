@@ -42,5 +42,25 @@
   },
   "gallery": {
     "titleMain" : "Applications of Pipe Sheet Piles"
+  },
+  "manufacturing": {
+    "hero" : "<strong>LLC «UKRTRUBOSHPUNT»</strong> manufactures <strong>pipe sheet piles</strong> with and at the production facilities of <strong>LLC «ZSP»</strong>which serves as the exclusive contract partner of <strong>LLC «UKRTRUBOSHPUNT»</strong> <br/><br/> <strong>Pipe sheet piles</strong> are manufactured in strict compliance with <u>the Ukrainian State Technical Specifications </u> <strong><u>TU U 24.2-455223116-002:2025,</u></strong> specifically developed to regulate the production of high-quality and reliable pipe sheet piles.",
+    "pipeTitle": "Типи замкiв",
+    "cardsTitle": {
+      "first": "MF63",
+      "second": "MF75",
+      "third": "MF100",
+      "fourth": "MF130",
+      "fifth": "MF180a",
+      "sixth": "MF180b"
+    },
+    "cardsText": {
+      "first": "Steel grade: S355J2<br/>Steel thickness: 12 mm<br/>Standard lengths: 8 m, 11,8 m<br/>Mass M35: 4,76 kg/m<br/>Mass F28: 10,7 kg/m<br/>Maximum tensile strength: 2552 kN/m (FEM)",
+      "second": "Steel grade: S355J2<br/>Steel thickness: 12 mm<br/>Standard lengths: 8 m, 11,8 m<br/>Mass M35: 4,76 kg/m<br/>Mass F40: 14,28 kg/m<br/>Maximum tensile strength: 3419 kN/m (FEM)",
+      "third": "Steel grade: S355J2<br/>Steel thickness: 12 mm<br/>Standard lengths: 8 m, 11,8 m<br/>Mass M60: 6,9 kg/m<br/>Mass F40: 14,28 kg/m<br/>Maximum tensile strength: 3419 kN/m (FEM)",
+      "fourth": "Steel grade: S355J2<br/>Steel thickness: 12 mm<br/>Standard lengths: 8 m, 11,8 m<br/>Mass M90: 4,76 kg/m<br/>Mass F40: 10,7 kg/m<br/>Maximum tensile strength: 2552 kN/m (FEM)",
+      "fifth": "Steel grade: S355J2<br/>Steel thickness: 12 mm<br/>Standard lengths: 8 m, 11,8 m<br/>Mass M140: 14,77 kg/m<br/>Mass F40: 14,28 kg/m<br/>Maximum tensile strength: 3419 kN/m (FEM)",
+      "sixth": "Steel grade: S355J2<br/>Steel thickness: 12 mm<br/>Standard lengths: 8 m, 11,8 m<br/>Mass M90: 9,76 kg/m<br/>Mass F90: 18,42 kg/m<br/>Maximum tensile strength: 3132 kN/m (FEM)"
+    }
   }
 }

@@ -1,0 +1,114 @@
+---
+import Section from '../common/Section.astro'
+import Title from '../common/Title.astro'
+import AppImage from '../common/AppImage.astro'
+
+import pipe1 from '../../assets/images/MF63-pipe.png'
+import bp1 from '../../assets/images/MF63-bp.png'
+import show1 from '../../assets/images/MF63-showcase.png'
+
+import pipe2 from '../../assets/images/MF75-pipe.png'
+import bp2 from '../../assets/images/MF75-bp.png'
+import show2 from '../../assets/images/MF75-showcase.png'
+
+import pipe3 from '../../assets/images/MF100-pipe.png'
+import bp3 from '../../assets/images/MF100-bp.png'
+import show3 from '../../assets/images/MF100-showcase.png'
+
+import pipe4 from '../../assets/images/MF130-pipe.png'
+import bp4 from '../../assets/images/MF130-bp.png'
+import show4 from '../../assets/images/MF130-showcase.png'
+
+import pipe5 from '../../assets/images/MF180a-pipe.png'
+import bp5 from '../../assets/images/MF180a-bp.png'
+import show5 from '../../assets/images/MF180a-showcase.png'
+
+import pipe6 from '../../assets/images/MF180b-pipe.png'
+import bp6 from '../../assets/images/MF180b-bp.png'
+import show6 from '../../assets/images/MF180b-showcase.png'
+
+const cards = [
+    {
+        titleKey: 'manufacturing.cardsTitle.first',
+        textKey: 'manufacturing.cardsText.first',
+        pipe: pipe1,
+        bp: bp1,
+        showcase: show1
+    },
+    {
+        titleKey: 'manufacturing.cardsTitle.second',
+        textKey: 'manufacturing.cardsText.second',
+        pipe: pipe2,
+        bp: bp2,
+        showcase: show2
+    },
+    {
+        titleKey: 'manufacturing.cardsTitle.third',
+        textKey: 'manufacturing.cardsText.third',
+        pipe: pipe3,
+        bp: bp3,
+        showcase: show3
+    },
+    {
+        titleKey: 'manufacturing.cardsTitle.fourth',
+        textKey: 'manufacturing.cardsText.fourth',
+        pipe: pipe4,
+        bp: bp4,
+        showcase: show4
+    },
+    {
+        titleKey: 'manufacturing.cardsTitle.fifth',
+        textKey: 'manufacturing.cardsText.fifth',
+        pipe: pipe5,
+        bp: bp5,
+        showcase: show5
+    },
+    {
+        titleKey: 'manufacturing.cardsTitle.sixth',
+        textKey: 'manufacturing.cardsText.sixth',
+        pipe: pipe6,
+        bp: bp6,
+        showcase: show6
+    },
+]
+---
+
+<Section class="pipe-types">
+    <Title MainText="manufacturing.pipeTitle" align="start"/>
+    <div class="pipe-types__grid">
+        {cards.map(({titleKey, textKey, pipe, bp, showcase}) => (
+                <div class="pipe-card">
+                    <div class="pipe-card__inner">
+                        <div class="pipe-card__header">
+                            <span class="pipe-card__title" data-i18n={titleKey}></span>
+                            <span class="pipe-card__text" data-i18n-html={textKey}></span>
+                        </div>
+                        <div class="pipe-card__img">
+                            <AppImage
+                                    src={pipe}
+                                    alt="pipe"
+                                    width={300}
+                                    sizes="(max-width: 576px) 100vw, (max-width: 992px) 50vw, 25vw"
+                                    quality={75}/>
+                        </div>
+                        <div class="pipe-card__img">
+                            <AppImage
+                                    src={bp}
+                                    alt="blueprint"
+                                    width={300}
+                                    sizes="(max-width: 576px) 100vw, (max-width: 992px) 50vw, 25vw"
+                                    quality={75}/>
+                        </div>
+                        <div class="pipe-card__img">
+                            <AppImage
+                                    src={showcase}
+                                    alt="showcase"
+                                    width={300}
+                                    sizes="(max-width: 576px) 100vw, (max-width: 992px) 50vw, 25vw"
+                                    quality={75}/>
+                        </div>
+                    </div>
+                </div>
+        ))}
+    </div>
+</Section>

@@ -1,7 +1,14 @@
 .idea
-node_modules/
-.astro
 .vscode
+.astro
 
+node_modules/
+dist/
 
+src/styles/global.css
+src/styles/global.css.map
 
+.env
+.env.*
+.DS_Store
+Thumbs.db

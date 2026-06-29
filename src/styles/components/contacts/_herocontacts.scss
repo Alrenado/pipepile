@@ -1,19 +1,17 @@
-@use '../../styles/abstracts/variables' as *;
-@use '../../styles/abstracts/mixins' as *;
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
 
 .hero-contacts {
   .section__container {
     @include flex-center;
     gap: 4rem;
 
-    @include respond-to(lg){
+    @include respond-to(lg) {
       flex-direction: column;
       gap: 2rem;
     }
 
-    @include respond-to(sm){
-      @include flex-start;
-    }
+    @include respond-to(sm) { @include flex-start; }
   }
 
   &__wrapper {
@@ -30,13 +28,9 @@
   }
 
   &__title {
-    font-family: $font-roboto;
     font-weight: $font-weight-medium;
     color: $color-text;
   }
 
-  &__text {
-    font-family: $font-roboto;
-    color: $color-text;
-  }
+  &__text { color: $color-text; }
 }

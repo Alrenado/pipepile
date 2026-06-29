@@ -1,0 +1,61 @@
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
+
+.factory {
+    .section__container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+.factory__wrapper {
+    &--first {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+
+        @include respond-to('md') { grid-template-columns: repeat(2, 1fr); }
+        @include respond-to('sm') { grid-template-columns: 1fr; }
+
+        .img-wrapper {
+            aspect-ratio: 545 / 1000;
+            border-radius: $radius-lg;
+
+            picture { display: block; height: 100%; }
+
+            .img { width: 100%; height: 100%; object-fit: cover; }
+        }
+    }
+
+    &--second {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+
+        @include respond-to('sm') { grid-template-columns: 1fr; }
+
+        .img-wrapper {
+            aspect-ratio: 840 / 520;
+            border-radius: $radius-lg;
+
+            picture { display: block; height: 100%; }
+
+            .img { width: 100%; height: 100%; object-fit: cover; }
+        }
+    }
+
+    &--video {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: $radius-lg;
+        overflow: hidden;
+
+        .video-wrapper {
+            position: absolute;
+            inset: 0;
+            width: auto;
+            height: auto;
+        }
+    }
+}

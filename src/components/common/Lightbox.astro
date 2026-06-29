@@ -1,7 +1,7 @@
 ---
 ---
 
-<div class="lightbox" id="lightbox" aria-hidden="true">
+<div class="lightbox" id="lightbox" aria-hidden="true" inert>
     <button class="lightbox__close" aria-label="Close">×</button>
 
     <div class="embla-main">
@@ -189,12 +189,14 @@
 
       lightbox.classList.add('is-open')
       lightbox.setAttribute('aria-hidden', 'false')
+      lightbox.removeAttribute('inert')
       document.documentElement.classList.add('menu-locked')
     }, { signal })
 
     const close = () => {
       lightbox.classList.remove('is-open')
       lightbox.setAttribute('aria-hidden', 'true')
+      lightbox.setAttribute('inert', '')
       document.documentElement.classList.remove('menu-locked')
       emblaMain?.destroy()
       emblaThumbs?.destroy()

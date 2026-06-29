@@ -14,7 +14,7 @@ interface Props {
 
 const {
     title,
-    description = 'upp site',
+    description = 'Виробництво та постачання сталевих труб в Україні. Широкий асортимент, власне виробництво, доставка по всій країні.',
     lang = 'uk',
     ogImage = '/og/default.jpg',
     canonical,
@@ -22,11 +22,7 @@ const {
 } = Astro.props
 
 const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href
-
-const alternates = [
-    { lang: 'uk', href: `https://pipepile.com/uk${Astro.url.pathname}` },
-    { lang: 'en', href: `https://pipepile.com/en${Astro.url.pathname}` },
-]
+const ogImageURL = new URL(ogImage, Astro.site).href
 
 const base = import.meta.env.BASE_URL
 const basePath = base.endsWith('/') ? base : `${base}/`
@@ -43,10 +39,15 @@ const basePath = base.endsWith('/') ? base : `${base}/`
 
     <meta http-equiv="content-language" content={lang} />
 
-    {alternates.map(alt => (
-            <link rel="alternate" hreflang={alt.lang} href={alt.href} />
-    ))}
-    <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
 
     <link rel="icon" type="image/png" href={`${basePath}favicon/favicon-96x96.png`} sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href={`${basePath}favicon/favicon.svg`} />

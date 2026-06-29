@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
 
 .slogan {
   background-image: linear-gradient(to right, $color-white, $color-bg-blue);
@@ -15,12 +15,10 @@
     gap: 2rem;
   }
 
-  &__wrapper{
+  &__wrapper {
     @include flex-center;
     gap: 1rem;
   }
 
-  &__text{
-    color: $color-text-selected;
-  }
+  &__text { color: $color-text-selected; }
 }

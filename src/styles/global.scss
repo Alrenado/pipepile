@@ -1,28 +1,31 @@
 @use 'abstracts/variables' as *;
 @use 'abstracts/mixins' as *;
-@use 'abstracts/functions' as *;
 
 @use 'base/reset';
 @use 'base/typography';
 
-@use 'components/logo';
-@use 'components/documentation';
-@use 'components/pdf-viewer';
-@use 'components/card';
-@use 'components/form';
-@use 'components/button';
-@use 'components/hero';
-@use 'components/slogan';
-@use 'components/production';
-@use 'components/features';
-@use 'components/title';
-@use 'components/herocontacts';
-@use 'components/gallery';
-@use 'components/gallery-block';
+@use 'components/common/pdf-viewer';
+@use 'components/common/title';
 
-@use 'layout/grid';
-@use 'layout/header';
-@use 'layout/footer';
+@use 'components/contacts/herocontacts';
+
+@use 'components/documentation/documentation';
+
+@use 'components/gallery/gallery';
+@use 'components/gallery/gallery-block';
+
+@use 'components/index/hero';
+@use 'components/index/slogan';
+@use 'components/index/production';
+@use 'components/index/features';
+
+@use 'components/manufacturing/heromanufacturing';
+@use 'components/manufacturing/pipe-types';
+@use 'components/manufacturing/factory';
+
+@use 'components/common/logo';
+
+
 
 :root {
   --container-width: 1320px;

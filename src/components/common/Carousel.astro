@@ -61,7 +61,7 @@
     background: $color-placeholder;
     cursor: pointer;
     padding: 0;
-    transition: background 0.3s ease;
+    transition: background $transition-base;
 
     &:global(.embla__dot--active) {
       background: $color-text-selected;
@@ -91,6 +91,7 @@
             const dots: HTMLButtonElement[] = embla.scrollSnapList().map((_, i) => {
                 const dot = document.createElement('button')
                 dot.classList.add('embla__dot')
+                dot.setAttribute('aria-label', `Слайд ${i + 1}`)
                 dot.addEventListener('click', () => embla.scrollTo(i))
                 dotsNode.appendChild(dot)
                 return dot

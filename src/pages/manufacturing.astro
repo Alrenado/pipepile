@@ -1,4 +1,15 @@
 ---
-import InProgressLayout from '../layouts/InProgressLayout.astro'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import HeroManufacturing from '../components/manufacturing/HeroManufacturing.astro'
+import PipeTypes from '../components/manufacturing/PipeTypes.astro'
+import Factory from '../components/manufacturing/Factory.astro'
 ---
-<InProgressLayout title="Виробництво | Pipepile" />
+
+<BaseLayout
+    title="Виробництво | Pipepile"
+    description="Власне виробництво сталевих труб: обладнання, технології, типи продукції. Контроль якості на кожному етапі."
+>
+    <HeroManufacturing/>
+    <PipeTypes/>
+    <Factory/>
+</BaseLayout>

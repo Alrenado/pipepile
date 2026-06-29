@@ -6,7 +6,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`
 
 <footer class="footer">
     <div class="footer__container">
-        <div class="footer__wrapper footer__navigaion">
+        <div class="footer__wrapper footer__navigation">
             <div class="footer__accordion">
                 <button class="footer__accordion-toggle" aria-expanded="false">
                     <span class="footer__accordion-title" data-i18n="footer.accordionTitle"></span>
@@ -26,9 +26,9 @@ const basePath = base.endsWith('/') ? base : `${base}/`
         <div class="footer__wrapper footer__privacy">
             <span data-i18n="footer.privacy"></span>
             <div class="lang-switch">
-                <button class="lang-switch__btn" data-lang="ua">UA</button>
-                <span>|</span>
-                <button class="lang-switch__btn" data-lang="en">EN</button>
+                <button class="lang-switch__btn" data-lang="ua" aria-label="Українська">UA</button>
+                <span aria-hidden="true">|</span>
+                <button class="lang-switch__btn" data-lang="en" aria-label="English">EN</button>
             </div>
         </div>
     </div>
@@ -79,7 +79,7 @@ const basePath = base.endsWith('/') ? base : `${base}/`
     }
 
     @include respond-to(lg) {
-      &__navigaion {
+      &__navigation {
         flex-direction: column;
         align-items: flex-start;
         gap: $spacing-md;

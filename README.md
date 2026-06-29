@@ -1,48 +1,76 @@
-# Astro Starter Kit: Minimal
+# Pipepile
 
-```sh
-npm create astro@latest -- --template minimal
+Корпоративный сайт компании. Стек: [Astro](https://astro.build) + SCSS (BEM), двуязычный (UA / EN), деплой на GitHub Pages.
+
+---
+
+## Команды
+
+```bash
+  npm install       # установить зависимости
+  npm run dev       # dev-сервер → http://localhost:4321/pipepile
+  npm run build     # production-сборка в dist/
+  npm run preview   # предпросмотр сборки локально
+  npm run deploy    # сборка + push в ветку gh-pages
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> Требуется Node.js ≥ 22.12.0
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## Структура
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```
+src/
+├── components/
+│   ├── common/       # переиспользуемые: AppImage, Carousel, Lightbox, Title…
+│   ├── gallery/      # блоки страницы gallery
+│   ├── index/        # блоки главной страницы
+│   ├── manufacturing/
+│   ├── contacts/
+│   ├── documentation/
+│   └── layout/       # Header, Footer, Logo
+├── locales/
+│   ├── ua.json       # украинский
+│   └── en.json       # английский
+├── pages/            # contacts, documentation, gallery, index, manufacturing
+├── scripts/
+│   ├── i18n.ts       # SSR-функция useTranslations()
+│   └── translations.ts # клиентское переключение языка
+└── styles/
+    ├── abstracts/    # _variables.scss, _mixins.scss
+    ├── base/         # _reset.scss, _typography.scss
+    ├── components/   # зеркалит структуру src/components/
+    ├── layout/       # _header.scss, _footer.scss, _grid.scss
+    └── global.scss   # точка входа, @use всех модулей
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Локализация
 
-Any static assets, like images, can be placed in the `public/` directory.
+Переводы хранятся в `src/locales/ua.json` и `src/locales/en.json`.
 
-## 🧞 Commands
+- **SSR (`.astro`-шаблоны)** — использовать `useTranslations(lang)` из `src/scripts/i18n.ts`
+- **Клиент (динамический текст)** — атрибуты `data-i18n` и `data-i18n-html` на элементах; `translations.ts` подставляет значения при переключении языка
 
-All commands are run from the root of the project, from a terminal:
+Язык по умолчанию: `ua`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+---
 
-## 👀 Want to learn more?
+## Новая страница
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Создать `src/pages/name.astro`
+2. Добавить `<Title ... level="h1" />` — на каждой странице должен быть ровно один `h1`
+3. Создать `src/styles/components/name/_block.scss`, подключить в `global.scss` через `@use`
+4. Добавить ссылку в `src/components/layout/Header.astro` и `Footer.astro`
 
-if vite error
-```sh
-npm install -D vite-plugin-svgo
-```
+---
+
+## Деплой
+
+Сайт деплоится в ветку `gh-pages` командой `npm run deploy`. Скрипт:
+
+1. Собирает `dist/` с `NODE_ENV=production`
+2. Добавляет `.nojekyll` (GitHub Pages не игнорирует папки с `_`)
+3. Делает `git subtree push --prefix dist origin gh-pages`

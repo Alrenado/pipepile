@@ -9,14 +9,16 @@ const alignMap = {
 
 interface Props {
     MainText: string
-    align?: keyof typeof alignMap  // 'start' | 'center' | 'end'
+    align?: keyof typeof alignMap
+    level?: 'h1' | 'h2' | 'h3'
 }
-const { MainText = "Title", align = 'start'} = Astro.props
 
+const { MainText = 'Title', align = 'start', level = 'h2' } = Astro.props
+const Tag = level
 const alignClass = alignMap[align]
 ---
 <div class={`section-title ${alignClass}`}>
-    <h1 data-i18n-html={MainText}></h1>
+    <Tag data-i18n-html={MainText}></Tag>
     <Divider />
 </div>
 
@@ -29,7 +31,7 @@ const alignClass = alignMap[align]
     gap: $spacing-xl;
   }
 
-  .section-title--start  { @include flex-start;flex-direction: column;}
-  .section-title--center { @include flex-center;flex-direction: column;}
-  .section-title--end    { @include flex-end;flex-direction: column;}
+  .section-title--start  { @include flex-start; flex-direction: column; }
+  .section-title--center { @include flex-center; flex-direction: column; }
+  .section-title--end    { @include flex-end;    flex-direction: column; }
 </style>

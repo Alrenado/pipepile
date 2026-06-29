@@ -1,0 +1,32 @@
+---
+import Section from '../common/Section.astro'
+import AppImage from '../common/AppImage.astro'
+import AppVideo from '../common/AppVideo.astro'
+
+import factory1 from '../../assets/images/factory-1.png'
+import factory2 from '../../assets/images/factory-2.png'
+import factory3 from '../../assets/images/factory-3.png'
+import factory4 from '../../assets/images/factory-4.png'
+import factory5 from '../../assets/images/factory-5.png'
+import factory6 from '../../assets/images/factory-6.png'
+import factory7 from '../../assets/images/factory-7.png'
+---
+
+<Section class="factory">
+    <div class="factory__wrapper factory__wrapper--first">
+        <AppImage src={factory1} alt="factory-1" width={545} sizes="(max-width: 768px) 100vw, (max-width: 992px) 50vw, 33vw" quality={75} />
+        <AppImage src={factory2} alt="factory-2" width={545} sizes="(max-width: 768px) 100vw, (max-width: 992px) 50vw, 33vw" quality={75} />
+        <AppImage src={factory3} alt="factory-3" width={545} sizes="(max-width: 768px) 100vw, (max-width: 992px) 50vw, 33vw" quality={75} />
+    </div>
+
+    <div class="factory__wrapper factory__wrapper--second">
+        <AppImage src={factory4} alt="factory-4" width={840} sizes="(max-width: 768px) 100vw, 50vw" quality={75} />
+        <AppImage src={factory5} alt="factory-5" width={840} sizes="(max-width: 768px) 100vw, 50vw" quality={75} />
+        <AppImage src={factory6} alt="factory-6" width={840} sizes="(max-width: 768px) 100vw, 50vw" quality={75} />
+        <AppImage src={factory7} alt="factory-7" width={840} sizes="(max-width: 768px) 100vw, 50vw" quality={75} />
+    </div>
+
+    <div class="factory__wrapper factory__wrapper--video">
+        <AppVideo src="https://www.youtube.com/watch?v=0TiT7ACZ5xQ" />
+    </div>
+</Section>

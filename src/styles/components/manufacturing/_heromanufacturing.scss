@@ -1,0 +1,13 @@
+@use '../../abstracts/variables' as *;
+@use '../../abstracts/mixins' as *;
+
+.manufacturing {
+    .section__container { justify-content: center; }
+
+    &__hero {
+        width: 50%;
+
+        @include respond-to('lg') { width: 75%; }
+        @include respond-to('md') { width: 100%; }
+    }
+}
