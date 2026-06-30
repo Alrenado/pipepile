@@ -1,7 +1,8 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import svgo from 'vite-plugin-svgo'
 
-const isProd = process.env.NODE_ENV === 'production'
+const base = process.env.ASTRO_BASE ?? '/'
+const site = process.env.ASTRO_SITE ?? 'http://localhost:4321'
 
 export default defineConfig({
     build:{
@@ -11,8 +12,8 @@ export default defineConfig({
     vite: {
         plugins: [svgo()]
     },
-    site: isProd ? 'https://pipepile.com' : 'https://Alrenado.github.io',
-    base: isProd ? '/' : '/pipepile',
+    site,
+    base,
     fonts: [
         {
             provider: fontProviders.local(),
