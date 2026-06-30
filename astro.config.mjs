@@ -11,8 +11,8 @@ export default defineConfig({
     vite: {
         plugins: [svgo()]
     },
-    site: 'https://Alrenado.github.io',
-    base: '/pipepile',
+    site: isProd ? 'https://pipepile.com' : 'https://Alrenado.github.io',
+    base: isProd ? '/' : '/pipepile',
     fonts: [
         {
             provider: fontProviders.local(),
