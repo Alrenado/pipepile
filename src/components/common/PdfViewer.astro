@@ -89,11 +89,38 @@ const pdfUrl = src.startsWith('http') ? src : `${basePath}${src.replace(/^\//, '
         let pdfDoc: any = null
         let scale = 1.2
         let currentPage = 1
+        let isScrolling = false
+        let observer: IntersectionObserver | null = null
         const canvases: HTMLCanvasElement[] = []
+
+        function setupIntersectionObserver() {
+            observer = new IntersectionObserver((entries) => {
+                if (isScrolling) return
+                let maxRatio = 0
+                let visiblePage = currentPage
+                entries.forEach(entry => {
+                    if (entry.intersectionRatio > maxRatio) {
+                        maxRatio = entry.intersectionRatio
+                        const page = parseInt((entry.target as HTMLElement).dataset.page!)
+                        if (page) visiblePage = page
+                    }
+                })
+                if (maxRatio > 0) {
+                    currentPage = visiblePage
+                    pageInput.value = String(currentPage)
+                    prevBtn.disabled = currentPage <= 1
+                    nextBtn.disabled = currentPage >= pdfDoc.numPages
+                }
+            }, { root: body, threshold: [0, 0.25, 0.5, 0.75, 1] })
+
+            body.addEventListener('scrollend', () => { isScrolling = false }, { passive: true })
+        }
 
         async function renderAllPages() {
             pages.innerHTML = ''
             canvases.length = 0
+
+            if (observer) observer.disconnect()
 
             for (let i = 1; i <= pdfDoc.numPages; i++) {
                 const page = await pdfDoc.getPage(i)
@@ -115,34 +142,17 @@ const pdfUrl = src.startsWith('http') ? src : `${basePath}${src.replace(/^\//, '
                 canvases.push(canvas)
             }
 
-            setupIntersectionObserver()
-        }
-
-        function setupIntersectionObserver() {
-            const observer = new IntersectionObserver((entries) => {
-                let maxRatio = 0
-                let visiblePage = currentPage
-                entries.forEach(entry => {
-                    if (entry.intersectionRatio > maxRatio) {
-                        maxRatio = entry.intersectionRatio
-                        const page = parseInt((entry.target as HTMLElement).dataset.page!)
-                        if (page) visiblePage = page
-                    }
-                })
-                if (maxRatio > 0) {
-                    currentPage = visiblePage
-                    pageInput.value = String(currentPage)
-                    prevBtn.disabled = currentPage <= 1
-                    nextBtn.disabled = currentPage >= pdfDoc.numPages
-                }
-            }, { root: body, threshold: [0, 0.25, 0.5, 0.75, 1] })
-
-            pages.querySelectorAll('.pdf-viewer__page').forEach(el => observer.observe(el))
+            pages.querySelectorAll('.pdf-viewer__page').forEach(el => observer!.observe(el))
         }
 
         function scrollToPage(num: number) {
             const target = pages.querySelector(`[data-page="${num}"]`) as HTMLElement
             if (target) {
+                isScrolling = true
+                currentPage = num
+                pageInput.value = String(num)
+                prevBtn.disabled = num <= 1
+                nextBtn.disabled = num >= pdfDoc.numPages
                 body.scrollTo({ top: target.offsetTop - 16, behavior: 'smooth' })
             }
         }
@@ -158,9 +168,8 @@ const pdfUrl = src.startsWith('http') ? src : `${basePath}${src.replace(/^\//, '
             const total = pdfDoc.numPages
             pageTotal.textContent = String(total)
             pageInput.max = String(total)
-            prevBtn.disabled = false
-            nextBtn.disabled = false
             loading.hidden = true
+            setupIntersectionObserver()
             await renderAllPages()
         } catch {
             loading.hidden = true
@@ -168,18 +177,18 @@ const pdfUrl = src.startsWith('http') ? src : `${basePath}${src.replace(/^\//, '
             return
         }
 
+        prevBtn.disabled = currentPage <= 1
+        nextBtn.disabled = pdfDoc.numPages <= 1
+
         prevBtn.addEventListener('click', () => {
-            if (currentPage > 1) scrollToPage(--currentPage)
+            if (currentPage > 1) scrollToPage(currentPage - 1)
         })
         nextBtn.addEventListener('click', () => {
-            if (currentPage < pdfDoc.numPages) scrollToPage(++currentPage)
+            if (currentPage < pdfDoc.numPages) scrollToPage(currentPage + 1)
         })
         pageInput.addEventListener('change', () => {
             const n = parseInt(pageInput.value)
-            if (n >= 1 && n <= pdfDoc.numPages) {
-                currentPage = n
-                scrollToPage(currentPage)
-            }
+            if (n >= 1 && n <= pdfDoc.numPages) scrollToPage(n)
         })
         zoomInBtn.addEventListener('click', () => updateZoom(0.2))
         zoomOutBtn.addEventListener('click', () => updateZoom(-0.2))
