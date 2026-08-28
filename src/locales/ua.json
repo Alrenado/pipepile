@@ -38,7 +38,10 @@
     "telTitle": "Телефон",
     "emailTitle": "Пошта",
     "telText": "+38 050 318 39 76",
-    "emailText": "info@pipepile.com.ua"
+    "emailText": "info@pipepile.com.ua",
+    "additionalHero": "Представник SteelWall GmbH: Матвій Юр’єв",
+    "additionalTelText": "+38 093 283 75 27",
+    "additionalEmailText": "Ymatt24@yahoo.com"
   },
   "gallery": {
     "titleMain" : "Приклади застосування трубошпунтових паль"
